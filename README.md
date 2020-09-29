@@ -29,12 +29,14 @@ You need to have an SSH access to the remote host in order to play this role. Th
 
 ## Example Playbook
 
-Most of the time, you only need to configure users:
+A minimal example playbook to bind loki to all interfaces:
 
 ```yaml
 - hosts: localhost
   roles:
-    - gucharbon.setup_loki
+    - role: gucharbon.setup_loki
+      vars:
+        loki_server_http_listen_address: 0.0.0.0
 ```
 
 ## License
