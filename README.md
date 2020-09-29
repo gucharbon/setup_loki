@@ -20,6 +20,8 @@ You need to have an SSH access to the remote host in order to play this role. Th
 | loki_server_http_listen_port    | `3100`        | listen port for loki                               |
 | loki_server_http_listen_address | `localhost`   | listen address for loki                            |
 | loki_directories                | `{}`          | array of directories to create before running loki |
+| loki_service_state              | `started`     | desired state for systemd unit service             |
+| loki_service_enabled            | `true`        | start loki during boot or not                      |
 | loki_schema_config              | default dict  | YAML with schema config                            |
 | loki_storage_config             | default dict  | YAML with storage config                           |
 | loki_ingester                   | default dict  | YAML with ingester settings                        |

@@ -1,5 +1,5 @@
 ---
-- name: create systemd service unit
+- name: Create loki systemd service unit
   template:
     src: loki.service.j2
     dest: /etc/systemd/system/loki.service
@@ -8,3 +8,9 @@
     mode: 0644
   notify:
     - restart loki
+
+- name: Configure loki service unit
+  service:
+    name: loki
+    state: "{{ loki_service_state }}"
+    enabled: "{{ loki_service_enabled }}"

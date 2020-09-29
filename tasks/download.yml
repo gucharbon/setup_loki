@@ -23,7 +23,6 @@
     creates: "/tmp/loki-{{ loki_version }}-linux-amd64/loki-linux-amd64"
     mode: 02755
   delegate_to: localhost
-  check_mode: false
 
 - name: Copy loki binary into /usr/local/bin/loki
   copy:
