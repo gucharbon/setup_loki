@@ -29,13 +29,14 @@ You need to have an SSH access to the remote host in order to play this role. Th
 
 ## Example Playbook
 
-A minimal example playbook to bind loki to all interfaces:
+An example playbook to bind loki to all interfaces and ping a specific version:
 
 ```yaml
 - hosts: localhost
   roles:
     - role: gucharbon.setup_loki
       vars:
+        loki_version: 1.6.1
         loki_server_http_listen_address: 0.0.0.0
 ```
 
