@@ -1,0 +1,4 @@
+---
+- hosts: test
+  roles:
+    - setup_loki

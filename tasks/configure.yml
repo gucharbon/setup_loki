@@ -1,0 +1,18 @@
+---
+- name: Create loki folders
+  file:
+    name: "{{ loki_directories }}"
+    state: directory
+    owner: "{{ loki_system_user }}"
+    group: "{{ loki_system_group }}"
+    mode: "02775"
+
+- name: Configure loki using configuration file in /etc/loki.yml
+  template:
+    src: loki.yml.j2
+    dest: /etc/loki.yml
+    owner: root
+    group: root
+    mode: 0644
+  notify:
+    - restart loki

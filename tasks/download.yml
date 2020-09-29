@@ -1,0 +1,36 @@
+---
+- name: Download loki files as zip archive
+  become: false
+  get_url:
+    url: "https://github.com/grafana/loki/releases/download/v{{ loki_version }}/loki-linux-amd64.zip" # yamllint disable-line
+    dest: "/tmp/"
+  delegate_to: localhost
+
+- name: Create temporary directory
+  become: false
+  file:
+    path: /tmp/loki-{{ loki_version }}-linux-amd64
+    state: directory
+    mode: 02775
+  delegate_to: localhost
+
+- name: Extract files from zip archive in temporary directory
+  become: false
+  unarchive:
+    src: "/tmp/loki-linux-amd64.zip"
+    remote_src: true
+    dest: /tmp/loki-{{ loki_version }}-linux-amd64
+    creates: "/tmp/loki-{{ loki_version }}-linux-amd64/loki-linux-amd64"
+    mode: 02755
+  delegate_to: localhost
+  check_mode: false
+
+- name: Copy loki binary into /usr/local/bin/loki
+  copy:
+    src: "/tmp/loki-{{ loki_version }}-linux-amd64/loki-linux-amd64"
+    dest: "/usr/local/bin/loki"
+    mode: 0755
+    owner: "{{ loki_system_user }}"
+    group: "{{ loki_system_group }}"
+  notify:
+    - restart loki

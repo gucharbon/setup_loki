@@ -1,0 +1,29 @@
+---
+- include_tasks: user.yml
+  tags:
+    - loki
+    - install
+    - users
+
+- include_tasks: download.yml
+  tags:
+    - loki
+    - install
+
+- include_tasks: configure.yml
+  tags:
+    - loki
+    - install
+
+- include_tasks: systemd.yml
+  tags:
+    - loki
+    - install
+    - service
+
+- include_tasks: loki_docker_plugin.yml
+  when: install_loki_docker_plugin|bool
+  tags:
+    - loki
+    - docker
+    - plugin

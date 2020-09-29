@@ -1,0 +1,6 @@
+---
+- name: Install loki docker plugin
+  docker_plugin:
+    name: "grafana/loki-docker-driver:{{ loki_docker_plugin_version }}"
+    alias: loki
+    state: "{{ loki_logging_driver_state }}"

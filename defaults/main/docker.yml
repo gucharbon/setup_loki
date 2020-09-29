@@ -1,0 +1,12 @@
+---
+install_loki_docker_plugin: true
+
+loki_logging_driver_state: enabled
+loki_as_default_logging_driver: true
+
+loki_docker_plugin_version: latest
+
+loki_docker_plugin_url: http://localhost:3100/loki/api/v1/push
+loki_docker_plugin_retries: 5
+loki_docker_plugin_batch_size: 400
+loki_docker_plugin_max_backoff: 10s

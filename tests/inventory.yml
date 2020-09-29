@@ -1,0 +1,4 @@
+---
+test:
+  hosts:
+    test-ansible:
